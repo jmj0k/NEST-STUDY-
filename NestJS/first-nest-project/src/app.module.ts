@@ -1,10 +1,18 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CatsModule } from './cats/cats.module';
+import { LoggerMiddleware } from './common/middlewares/logger.middleware';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [],
+  imports: [CatsModule, UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    // cats 라우터에 바인딩
+    consumer.apply(LoggerMiddleware).forRoutes('cats');
+  }
+}
