@@ -23,3 +23,7 @@ Yagni 원칙(You ain't gonna need it) : 결국 쓸데 없을 테니 간단한 �
 9. 응답
 
 미들웨어와 인터셉터의 차이는 실행 순서가 다르다는 점,
+
+error: 'NestJS/cats-community/' does not have a commit checked out
+fatal: adding files failed
+=> 상위 폴더에 .git 폴더가 있는데 하위 폴더에 .git 폴더가 또 있을 때 발생함, .git 폴더 제거하면 정상 작동
