@@ -27,3 +27,15 @@ Yagni 원칙(You ain't gonna need it) : 결국 쓸데 없을 테니 간단한 �
 error: 'NestJS/cats-community/' does not have a commit checked out
 fatal: adding files failed
 => 상위 폴더에 .git 폴더가 있는데 하위 폴더에 .git 폴더가 또 있을 때 발생함, .git 폴더 제거하면 정상 작동
+
+#### 레포지토리 패턴
+
+clinet -> service1, service2, service3 -> data source
+
+=> service1에 db에 접근을 한 로직이 있는데 service2에서 그것을 가져온다면
+=> 근데 service1에서도 service2를 참조하고 있다면 순환 참조가 된다.
+=> 이 경우 가독성이 굉장히 떨어지게 된다.
+
+레포지토리 패턴으로 db와 직접적으로 연결하는 로직들을 분리하면 다른 모듈에서 접근할 때 이 레포지토리에만 접근을 하면 된다. 그러면 각각의 모듈에서 비지니스 로직에 더 집중할 수 있게 되고 모듈 간의 책임 분리도 확실하게 된다.
+
+레포지토리 패턴은 서비스 레이어에서 데이터의 출처와 관계없이 동일한 방식으로 접근을 가능하게 한다. 일종의 데이터 베이스 캡슐화, db 중앙 통제실
