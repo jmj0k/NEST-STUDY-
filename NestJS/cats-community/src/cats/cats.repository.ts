@@ -13,6 +13,11 @@ export class CatsRepository {
     return result ? true : false;
   }
 
+  async findByEmail(email: string): Promise<Cat | null> {
+    const user = await this.catModel.findOne({ email });
+    return user;
+  }
+
   async create(cat: CatRequestDto): Promise<Cat> {
     return await this.catModel.create(cat);
   }
